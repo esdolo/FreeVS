@@ -8,7 +8,7 @@
 ## Introduction
 We propose a fully generative novel view synthesis method that can generate camera views in free trajectories in real 3D scenes.
 <div align="center">
-  <img src="figs/FreeVS_pipeline.png" width="800"/>
+  <img src="FreeVS_pipeline.png" width="800"/>
 </div><br/>
 
 ## Get Started
