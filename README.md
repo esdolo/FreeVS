@@ -3,7 +3,7 @@
 [Qitai Wang](https://github.com/esdolo), [Lue Fan](https://lue.fan/), [Yuqi Wang](https://robertwyq.github.io/), [Yuntao Chen†](https://scholar.google.com/citations?user=iLOoUqIAAAAJ), [Zhaoxiang Zhang†](https://zhaoxiangzhang.net/)
 (†: Corresponding Author)
 
-[[arxiv](https://arxiv.org/abs/2410.18079/)] [[Project page](https://drive-wm.github.io/)]
+[[arxiv](https://arxiv.org/abs/2410.18079/)] [[Project page](https://freevs24.github.io/)]
 
 ## Introduction
 We propose a fully generative novel view synthesis method that can generate camera views in free trajectories in real 3D scenes.
