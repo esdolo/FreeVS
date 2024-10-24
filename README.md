@@ -14,15 +14,15 @@ We propose a fully generative novel view synthesis method that can generate came
 ## Get Started
 Our code is based on the open-source project diffusers.
 
-## Citation
-```
-@article{wang2023driving,
-  title={Driving into the Future: Multiview Visual Forecasting and Planning with World Model for Autonomous Driving},
-  author={Wang, Yuqi and He, Jiawei and Fan, Lue and Li, Hongxin and Chen, Yuntao and Zhang, Zhaoxiang},
-  journal={arXiv preprint arXiv:2311.17918},
-  year={2023}
-}
-```
+%## Citation
+%```
+%@article{wang2023driving,
+%  title={Driving into the Future: Multiview Visual Forecasting and Planning with World Model for Autonomous Driving},
+%  author={Wang, Yuqi and He, Jiawei and Fan, Lue and Li, Hongxin and Chen, Yuntao and Zhang, Zhaoxiang},
+%  journal={arXiv preprint arXiv:2311.17918},
+%  year={2023}
+%}
+%```
 
 ## Acknowledgement 
 Many thanks to the following open-source projects:
