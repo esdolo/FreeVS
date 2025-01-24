@@ -5,6 +5,9 @@
 
 [[arxiv](https://arxiv.org/abs/2410.18079/)] [[Project page](https://freevs24.github.io/)]
 
+## 🚀 News
+- [2025-01] Our paper is accepted by **ICLR 2025**. The code will be released in early February.
+
 ## Introduction
 We propose a fully generative novel view synthesis method that can generate camera views in free trajectories in real 3D scenes.
 <div align="center">
