@@ -1,5 +1,5 @@
 # FreeVS: Generative View Synthesis on Free Driving Trajectory
-Official implementation of [ICLR2025] FreeVS: Generative View Synthesis on Free Driving Trajectory.
+Official implementation of **[ICLR2025]** FreeVS: Generative View Synthesis on Free Driving Trajectory.
 
 [Qitai Wang](https://github.com/esdolo), [Lue Fan](https://lue.fan/), [Yuqi Wang](https://robertwyq.github.io/), [Yuntao Chen](https://scholar.google.com/citations?user=iLOoUqIAAAAJ), [Zhaoxiang Zhang](https://zhaoxiangzhang.net/)
 
@@ -12,6 +12,9 @@ Official implementation of [ICLR2025] FreeVS: Generative View Synthesis on Free 
 - **[2025/02/10]** Implementation of FreeVS on Waymo Open Dataset is released.
 - **[2025/01/23]** 🎉 FreeVS was accepted to ICLR 2025！
 
+## To Do
+- [ ] Implementation on nuScenes
+- [ ] Provide 3D prior based on estimated depth where LiDAR observations are missing, to ensure the consistency of far, background area.
 
 ## Prerequisite
 ```bash
@@ -23,17 +26,13 @@ pip install .
 pip install -r requirements.txt
 ```
 
-## To Do
-- [ ] Implementation on nuScenes
-- [ ] Provide 3D prior based on estimated depth where LiDAR observations are missing, to ensure the consistency of far, background area.
-
 # Waymo Open Dataset  
 
 ## Quick Start with Examples
 Download a trained model [checkpoint](https://huggingface.co/Esdolo/FreeVS_WOD), as well as serveral processed example scenes. **Please check the [License Agreement](https://waymo.com/open/terms/) of WOD dataset before downloading this checkpoint**.
 ```bash
 cd diffusers
-pip install huggingface-cli 
+pip install huggingface_hub
 
 huggingface-cli download Esdolo/FreeVS_WOD --local-dir ./pretrained/FreeVS_WOD/
 
@@ -103,7 +102,7 @@ bash examples/freevs/scripts/run_train.sh
 ```bash
 python examples/freevs/inference_svd.py --model_path work_dirs/freevs_waymo_halfreso_multiframe_transformation_simulate_trainunet --img_pickle waymo_process/waymo_multiframe_subsegbycampos_transform_simulation.pkl --output_dir rendered_waymo_origin 
 ```
-To control the camera pose for novel trajectory simulation, please modify camera extrinsic in waymo_process/lidarproj_halfreso_multiframe.py. We provide a example case of camera pose editing in scene_modify_example/lidarproj_halfreso_multiframe_democases_1250_camposedit.py.
+To control the camera pose for novel trajectory simulation, please modify camera extrinsic in waymo_process/lidarproj_halfreso_multiframe.py. We provide a example case of camera pose editing in waymo_process/scene_modify_example/lidarproj_halfreso_multiframe_democases_1250_camposedit.py.
 
 ## Citation
 ```
@@ -118,3 +117,4 @@ To control the camera pose for novel trajectory simulation, please modify camera
 ## Acknowledgement 
 Many thanks to the following open-source projects:
 * [diffusers](https://github.com/huggingface/diffusers)
+* [Drive-WM](https://github.com/BraveGroup/Drive-WM)
