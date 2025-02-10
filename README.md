@@ -25,6 +25,7 @@ pip install -r requirements.txt
 
 ## To Do
 - [ ] Implementation on nuScenes
+- [ ] Provide 3D prior based on estimated depth where LiDAR observations are missing, to ensure the consistency of far, background scene area.
 
 # Waymo Open Dataset  
 
@@ -66,6 +67,8 @@ python data_process/waymo_data_generation_subsegbycampos_multiframe.py --data_ro
 
 ## Train SVD
 We initialize SVD model from https://huggingface.co/stabilityai/stable-video-diffusion-img2vid-xt. Download it as pretrained/stable-video-diffusion-img2vid-xt.
+
+We provide a trained model checkpoint in [https://huggingface.co/Esdolo/FreeVS_WOD](https://huggingface.co/Esdolo/FreeVS_WOD). **Please check the [License Agreement](https://waymo.com/open/terms/) of WOD dataset before downloading this checkpoint**.
 ```bash
 # On WOD, we recommend training diffuser model with a frozen pseudo-image encoder, which can significantly accelerate model convergence.
 # We privide a pseudo-image encoder checkpoint in diffusers/pretrained/.
