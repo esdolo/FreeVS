@@ -32,6 +32,10 @@ pip install -r requirements.txt
 ```bash
 cd waymo_process
 
+#|-- <path to WOD>
+#     |--*.tfrecoed
+#     |...
+
 # Extract images from .tfrecord files
 python extract_gt_images.py --waymo_raw_dir <path to WOD> --output_dir waymo_gtimg_5hz_allseg --interval 2
 
