@@ -1,0 +1,10 @@
+{
+  "_class_name": "LayoutCondEncoder",
+  "_diffusers_version": "0.28.0.dev0",
+  "condition_list": null,
+  "img_shape": [
+    960,
+    384
+  ],
+  "out_dim": 1024
+}
