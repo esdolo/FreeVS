@@ -28,7 +28,7 @@ pip install -r requirements.txt
 
 # Waymo Open Dataset  
 
-## Quick Start with Examples
+## Quick start with examples
 Download a trained model [checkpoint](https://huggingface.co/Esdolo/FreeVS_WOD), as well as serveral processed example scenes. **Please check the [License Agreement](https://waymo.com/open/terms/) of WOD dataset before downloading this checkpoint**.
 ```bash
 cd diffusers
@@ -51,7 +51,7 @@ python examples/freevs/inference_svd.py --front_only --model_path pretrained/Fre
 ```
 Results synthesized in the origin/new trajectory will be output to rendered_waymo_example_origintraj / rendered_waymo_example_newtraj.
 
-## Prepare Waymo GT images / pseudo images
+## Prepare waymo GT images / pseudo images
 ```bash
 cd waymo_process
 
@@ -98,7 +98,7 @@ bash examples/freevs/scripts/run_train_onlyunet.sh
 bash examples/freevs/scripts/run_train.sh
 ```
 
-## Run Inference
+## Run inference
 ```bash
 python examples/freevs/inference_svd.py --model_path work_dirs/freevs_waymo_halfreso_multiframe_transformation_simulate_trainunet --img_pickle waymo_process/waymo_multiframe_subsegbycampos_transform_simulation.pkl --output_dir rendered_waymo_origin 
 ```
