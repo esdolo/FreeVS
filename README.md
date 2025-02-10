@@ -1,4 +1,4 @@
-# FreeVS
+# FreeVS: Generative View Synthesis on Free Driving Trajectory
 Official implementation of [ICLR2025] FreeVS: Generative View Synthesis on Free Driving Trajectory.
 
 [Qitai Wang](https://github.com/esdolo), [Lue Fan](https://lue.fan/), [Yuqi Wang](https://robertwyq.github.io/), [Yuntao Chen](https://scholar.google.com/citations?user=iLOoUqIAAAAJ), [Zhaoxiang Zhang](https://zhaoxiangzhang.net/)
@@ -73,7 +73,7 @@ bash examples/freevs/scripts/run_train.sh
 
 ## Run Inference
 ```bash
-python examples/freevs/inference_svd.py --model_path work_dirs/freevs_waymo_halfreso_multiframe --img_pickle waymo_process/waymo_multiframe_subsegbycampos.pkl --output_dir rendered_waymo_origin
+python examples/freevs/inference_svd.py --model_path work_dirs/freevs_waymo_halfreso_multiframe_transformation_simulate_trainunet --img_pickle waymo_process/waymo_multiframe_subsegbycampos_transform_simulation.pkl --output_dir rendered_waymo_origin
 ```
 To control the camera pose for novel trajectory simulation, please modify camera extrinsic in waymo_process/lidarproj_halfreso_multiframe.py. We provide a example case of camera pose editing in scene_modify_example/lidarproj_halfreso_multiframe_democases_1250_camposedit.py.
 
