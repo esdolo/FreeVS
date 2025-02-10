@@ -19,6 +19,7 @@ parser.add_argument('--model_path', type=str,default='work_dirs/freevs_waymo_hal
 parser.add_argument('--img_pickle', type=str,default = 'waymo_process/waymo_multiframe_subsegbycampos.pkl')
 parser.add_argument('--output_dir', type=str, default='rendered_waymo_origin') 
 parser.add_argument('--video_length', type=int, default=6) # batch frame num
+parser.add_argument("--front_only",action="store_true",default=False,help="whether to randomly flip images horizontally",)
 args = parser.parse_args()
 
 if __name__ == "__main__":
@@ -46,6 +47,9 @@ if __name__ == "__main__":
     for scene in scenes:
         if True:#scene[-9:]=='CAM_FRONT':
 
+            if args.front_only and not scene[-5:]=='FRONT':
+                continue
+
             imgs = img_data[scene]
             allframes=[]
             propagate_latents=None
@@ -54,7 +58,7 @@ if __name__ == "__main__":
 
             os.makedirs(os.path.join(savepath,scene),exist_ok=True)
 
-            for rand_int in range(0,math.floor(len(imgs)/video_length)+1): #5hz
+            for rand_int in range(0,math.floor(len(imgs)/video_length)): #5hz
 
                 if rand_int<math.floor(len(imgs)/video_length):
                     images = [temp['pseudo_image'] for temp in imgs[rand_int*video_length:rand_int*video_length+video_length]]
@@ -65,6 +69,9 @@ if __name__ == "__main__":
                 
                 # demo case
                 # images = [temp.replace('waymo_pseudoimg_multiframe','waymo_pseudoimg_multiframe_5hz_democases') for temp in images]
+                
+                if not sum([os.path.exists(image) for image in images]) == len(images):
+                    break
 
                 pseudo_images=[]
                 for image in images:

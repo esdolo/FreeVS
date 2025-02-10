@@ -9,7 +9,7 @@ Official implementation of [ICLR2025] FreeVS: Generative View Synthesis on Free 
 ![Demo video](diffusers/demos/12505030131868863688_1740_000_1760_000_FRONT.gif)
 
 ## Recent updates
-- **[2025/02/08]** Implementation of FreeVS on Waymo Open Dataset is released.
+- **[2025/02/10]** Implementation of FreeVS on Waymo Open Dataset is released.
 - **[2025/01/23]** 🎉 FreeVS was accepted to ICLR 2025！
 
 
@@ -25,9 +25,32 @@ pip install -r requirements.txt
 
 ## To Do
 - [ ] Implementation on nuScenes
-- [ ] Provide 3D prior based on estimated depth where LiDAR observations are missing, to ensure the consistency of far, background scene area.
+- [ ] Provide 3D prior based on estimated depth where LiDAR observations are missing, to ensure the consistency of far, background area.
 
 # Waymo Open Dataset  
+
+## Quick Start with Examples
+Download a trained model [checkpoint](https://huggingface.co/Esdolo/FreeVS_WOD), as well as serveral processed example scenes. **Please check the [License Agreement](https://waymo.com/open/terms/) of WOD dataset before downloading this checkpoint**.
+```bash
+cd diffusers
+pip install huggingface-cli 
+
+huggingface-cli download Esdolo/FreeVS_WOD --local-dir ./pretrained/FreeVS_WOD/
+
+huggingface-cli download Esdolo/FreeVS_Examples --local-dir ./waymo_process/FreeVS_Examples/
+
+cd waymo_process/FreeVS_Examples
+tar -xzf FreeVS_Examples.tar.gz
+cd ../..
+```
+
+Run inference with example scenes:
+```bash
+python examples/freevs/inference_svd.py --front_only --model_path pretrained/FreeVS_WOD/ --img_pickle waymo_process/FreeVS_Examples/waymo_example_newtraj.pkl  --output_dir rendered_waymo_example_newtraj
+
+python examples/freevs/inference_svd.py --front_only --model_path pretrained/FreeVS_WOD/ --img_pickle waymo_process/FreeVS_Examples/waymo_example_origintraj.pkl  --output_dir rendered_waymo_example_origintraj 
+```
+Results synthesized in the origin/new trajectory will be output to rendered_waymo_example_origintraj / rendered_waymo_example_newtraj.
 
 ## Prepare Waymo GT images / pseudo images
 ```bash
@@ -67,8 +90,6 @@ python data_process/waymo_data_generation_subsegbycampos_multiframe.py --data_ro
 
 ## Train SVD
 We initialize SVD model from https://huggingface.co/stabilityai/stable-video-diffusion-img2vid-xt. Download it as pretrained/stable-video-diffusion-img2vid-xt.
-
-We provide a trained model checkpoint in [https://huggingface.co/Esdolo/FreeVS_WOD](https://huggingface.co/Esdolo/FreeVS_WOD). **Please check the [License Agreement](https://waymo.com/open/terms/) of WOD dataset before downloading this checkpoint**.
 ```bash
 # On WOD, we recommend training diffuser model with a frozen pseudo-image encoder, which can significantly accelerate model convergence.
 # We privide a pseudo-image encoder checkpoint in diffusers/pretrained/.
@@ -80,7 +101,7 @@ bash examples/freevs/scripts/run_train.sh
 
 ## Run Inference
 ```bash
-python examples/freevs/inference_svd.py --model_path work_dirs/freevs_waymo_halfreso_multiframe_transformation_simulate_trainunet --img_pickle waymo_process/waymo_multiframe_subsegbycampos_transform_simulation.pkl --output_dir rendered_waymo_origin
+python examples/freevs/inference_svd.py --model_path work_dirs/freevs_waymo_halfreso_multiframe_transformation_simulate_trainunet --img_pickle waymo_process/waymo_multiframe_subsegbycampos_transform_simulation.pkl --output_dir rendered_waymo_origin 
 ```
 To control the camera pose for novel trajectory simulation, please modify camera extrinsic in waymo_process/lidarproj_halfreso_multiframe.py. We provide a example case of camera pose editing in scene_modify_example/lidarproj_halfreso_multiframe_democases_1250_camposedit.py.
 
