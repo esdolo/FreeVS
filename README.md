@@ -9,7 +9,7 @@ Official implementation of **[ICLR2025]** FreeVS: Generative View Synthesis on F
 ![Demo video](diffusers/demos/12505030131868863688_1740_000_1760_000_FRONT.gif)
 
 ## Recent updates
-- **[2025/02/10]** Implementation of FreeVS on Waymo Open Dataset is released.
+- **[2025/02/11]** Implementation of FreeVS on Waymo Open Dataset is released.
 - **[2025/01/23]** 🎉 FreeVS was accepted to ICLR 2025！
 
 ## To Do
