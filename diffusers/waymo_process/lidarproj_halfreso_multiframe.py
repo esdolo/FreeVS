@@ -207,11 +207,9 @@ def projpc(data,frame_points,intid2inboxpoints,waymoid2intid,idx,output_path,res
             if len(uv_filtered)>0:
 
                 added_uvs=[]
-                for radius in range(0,proj_territory_size+1):
-                    added_uvs.append(uv_filtered+np.array([proj_territory_size,0]))
-                    added_uvs.append(uv_filtered+np.array([-proj_territory_size,0]))
-                    added_uvs.append(uv_filtered+np.array([0,-proj_territory_size]))
-                    added_uvs.append(uv_filtered+np.array([0,proj_territory_size]))
+                for radiusx in range(-proj_territory_size,proj_territory_size+1):
+                    for radiusy in  range(-proj_territory_size,proj_territory_size+1):
+                        added_uvs.append(uv_filtered+np.array([radiusx,radiusy]))
                 added_uvs=np.concatenate(added_uvs,axis=0)
                 added_uvs=np.concatenate([uv_filtered,added_uvs],axis=0)
 
@@ -381,7 +379,7 @@ def save_images_from_waymo(segment_path, output_path, nframes=2, interval=2):
 
         frame_points.append(transformed_lidar_points)
 
-        # if idx>10:
+        # if idx>20:
         #     break
 
 
@@ -396,7 +394,7 @@ def save_images_from_waymo(segment_path, output_path, nframes=2, interval=2):
         if not idx%interval==0: #sample each *interval frames
             continue
 
-        projpc(data,frame_points,intid2inboxpoints,waymoid2intid,idx,output_path,multiframe_num=nframes,proj_territory_size=4)
+        projpc(data,frame_points,intid2inboxpoints,waymoid2intid,idx,output_path,multiframe_num=nframes,proj_territory_size=2)
 
 
 def filter_duplicates(uv, dists,colors):

@@ -877,7 +877,7 @@ def main():
             self.layout_encoder = layout_encoder
             self.conditioning_dropout_prob = conditioning_dropout_prob
 
-        def forward(self, first_frame_image, encoder_hidden_states, noisy_latents, c_noise, add_time_ids,scaling_factor,bsz):
+        def forward(self, first_frame_image, encoder_hidden_states, noisy_latents, c_noise, add_time_ids,scaling_factor,bsz,c_in):
             # layout_latents = layout_encoder(ego_info)
             # layout_latents = layout_latents.unsqueeze(1)
             # encoder_hidden_states = torch.cat([image_embeddings_temporal, layout_latents], dim=1)
@@ -1452,7 +1452,7 @@ def main():
                 add_time_ids = torch.tensor(add_time_ids, device=latents.device).unsqueeze(0).expand(bsz, -1)
                 # Predict the noise residual and compute loss
 
-                model_pred = model(first_frame_image,encoder_hidden_states, noisy_latents, c_noise, add_time_ids,vae.config.scaling_factor,bsz)
+                model_pred = model(first_frame_image,encoder_hidden_states, noisy_latents, c_noise, add_time_ids,vae.config.scaling_factor,bsz,c_in)
 
                 pred_final = c_out*model_pred + c_skip * noisy_latents 
 
