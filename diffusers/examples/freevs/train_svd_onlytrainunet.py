@@ -913,9 +913,9 @@ def main():
 
     unet = UNetSpatioTemporalConditionModelV2.from_pretrained(args.pretrained_model_name_or_path, subfolder="unet", revision=args.non_ema_revision)
 
-    tokenizer = CLIPTokenizer.from_pretrained(
-        args.pretrained_model_name_or_path, subfolder="tokenizer", revision=args.revision
-    )
+    # tokenizer = CLIPTokenizer.from_pretrained(
+    #     args.pretrained_model_name_or_path, subfolder="tokenizer", revision=args.revision
+    # )
     with ContextManagers(deepspeed_zero_init_disabled_context_manager()):
         feature_extractor = CLIPImageProcessor.from_pretrained(args.pretrained_model_name_or_path, subfolder="feature_extractor", revision=args.revision)
         image_encoder = CLIPVisionModelWithProjection.from_pretrained(
@@ -1146,7 +1146,7 @@ def main():
             train_dataset = VideoNuscenesDataset(
                 data_root=args.dataset_name,
                 video_transforms=train_transforms,
-                tokenizer=tokenizer,
+                tokenizer=None,
                 video_length=args.nframes,
                 mismatch_aug_ratio=args.mismatch_aug_ratio
             )
@@ -1156,11 +1156,11 @@ def main():
     if accelerator.is_main_process:
         print('************** finish loading *************')
 
-    def tokenize_captions_null(captions):
-        inputs = tokenizer(
-            captions, max_length=tokenizer.model_max_length, padding="max_length", truncation=True, return_tensors="pt"
-        )
-        return inputs.input_ids
+    # def tokenize_captions_null(captions):
+    #     inputs = tokenizer(
+    #         captions, max_length=tokenizer.model_max_length, padding="max_length", truncation=True, return_tensors="pt"
+    #     )
+        # return inputs.input_ids
     
     # DataLoaders creation:
     train_dataloader = torch.utils.data.DataLoader(

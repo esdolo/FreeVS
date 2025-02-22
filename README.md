@@ -92,6 +92,7 @@ We initialize SVD model from https://huggingface.co/stabilityai/stable-video-dif
 ```bash
 # On WOD, we recommend training diffuser model with a frozen pseudo-image encoder, which can significantly accelerate model convergence.
 # We privide a pseudo-image encoder checkpoint in diffusers/pretrained/.
+# turn on --gradient_checkpointing to save memory cost if needed
 bash examples/freevs/scripts/run_train_onlyunet.sh
 
 # Script for joint training pseudo-img encoder and diffuser
